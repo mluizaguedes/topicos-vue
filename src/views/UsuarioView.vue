@@ -10,9 +10,10 @@
       <label for="senha">Senha: </label>
       <input id="senha" type="text" v-model="senha" />
     </p>
-
     <button @click="inserirUsuario">Inserir</button>
-
+    <button @click="atualizar">Atualizar</button>
+    <p v-if="erro">{{ erro }}</p>
+    <p v-else>Tudo ok!</p>
     <table>
       <thead>
         <tr>
@@ -20,7 +21,6 @@
           <th>Nome</th>
         </tr>
       </thead>
-
       <tbody>
         <tr v-for="usuario in usuarios" :key="usuario.id">
           <th>{{ usuario.id }}</th>
@@ -33,6 +33,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import axios from 'axios'
+import { onMounted } from 'vue'
 
 interface usuario {
   id?: number
@@ -40,15 +42,34 @@ interface usuario {
   senha: string
 }
 
-const nome = ref<string>('')
-const senha = ref<string>('')
+const nome = ref<string>('Teste')
+const senha = ref<string>('senha')
+const erro = ref<string>()
 const usuarios = ref<usuario[]>([
-  { id: 1, nome: 'João', senha: '123' },
-  { id: 2, nome: 'Maria', senha: '1234' },
+  { id: 1, nome: 'administrador', senha: 'admin' },
+  { id: 2, nome: 'usuario', senha: 'teste' },
 ])
 
-function inserirUsuario() {
-  const id = usuarios.value.length + 1
-  usuarios.value.push({ id, nome: nome.value, senha: senha.value })
+async function inserirUsuario() {
+  try {
+    await axios.post('usuario', {
+      nome: nome.value,
+      senha: senha.value,
+    })
+    nome.value = ''
+    senha.value = ''
+    atualizar()
+    erro.value = undefined
+  } catch (error) {
+    erro.value = (error as Error).message
+  }
 }
+
+async function atualizar() {
+  usuarios.value = (await axios.get('usuario')).data
+}
+
+onMounted(() => {
+  atualizar()
+})
 </script>
