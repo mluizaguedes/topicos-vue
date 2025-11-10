@@ -1,5 +1,7 @@
 <template>
   <div>
+  <!-- label = input -->
+  <!-- cadastrar -->
   <form @submit.prevent="cadastrar">
     <p>
       <label id="textoLabel" for="texto">Texto: </label>
@@ -21,6 +23,8 @@
 
     <button type="submit">Cadastrar</button>
   </form>
+
+  <!-- pesquisar (consulta) -->
   <form @submit.prevent="pesquisar">
     <p>
       <label id="textPesquisaLabel" for="textoPesquisa">Texto: </label>
@@ -37,7 +41,10 @@
     </p>
     <button type="submit">Pesquisar</button>
   </form>
+
+  <!-- tabela listagem -->
   <table v-if="anotacoes.length > 0">
+    <!-- colunas -->
     <thead>
       <tr>
         <th>Id</th>
@@ -46,6 +53,8 @@
         <th>Nome do Usuário</th>
       </tr>
     </thead>
+
+    <!-- linhas -->
     <tbody>
       <tr v-for="anotacao in anotacoes" :key="anotacao.id">
         <th>{{ anotacao.id }}</th>
@@ -54,6 +63,7 @@
         <th>{{ anotacao.usuario.nome }}</th>
       </tr>
     </tbody>
+
   </table>
   <p v-else>Nenhum registro foi encontrado para os critérios fornecidos</p>
   </div>
@@ -89,7 +99,7 @@ async function cadastrar() {
     erro.value = ''
     await axios.post('anotacao', novaAnotacao.value)
     atualizar()
-    novaAnotacao.value.texto = ''
+    novaAnotacao.value.texto = '' // limpar os campos apos cadastrar
     novaAnotacao.value.dataHora = ''
   } catch (e) {
     erro.value = (e as Error).message

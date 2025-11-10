@@ -10,11 +10,13 @@ import HelloWorld from './components/HelloWorld.vue'
     <div class="wrapper">
       <HelloWorld msg="Hello World!" />
 
+      <!-- links de acesso na barra de navegação -->
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/usuario">Usuários</RouterLink>
         <RouterLink to="/anotacao">Gerencie Anotações</RouterLink>
+        <RouterLink to="/comentario">Comente!</RouterLink>
         <RouterLink to="/login">Login</RouterLink>
       </nav>
     </div>
