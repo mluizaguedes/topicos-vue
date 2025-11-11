@@ -1,39 +1,59 @@
-# vue-topicos
+## Projeto Tópicos Vue
 
-This template should help get you started developing with Vue 3 in Vite.
+![Top Language](https://img.shields.io/github/languages/top/mluizaguedes/topicos-vue?style=for-the-badge)
 
-## Recommended IDE Setup
+Este é um projeto frontend desenvolvido com Vue 3 e Vite, que simula um sistema de gerenciamento de usuários, anotações e comentários, interagindo com uma API de backend.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Tecnologias Utilizadas
 
-## Type Support for `.vue` Imports in TS
+*   **Vue 3**
+*   **Vite**
+*   **TypeScript**
+*   **Pinia** (Gerenciamento de Estado)
+*   **Vue Router** (Roteamento)
+*   **Axios** (Requisições HTTP)
+*   **ESLint** (Linting)
+*   **Prettier** (Formatação de Código)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### Pré-requisitos
 
-## Customize configuration
+Certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+*   **Node.js**: Versão 20.19.0 ou superior (conforme `package.json`).
+*   **npm**: Gerenciador de pacotes do Node.js.
 
-## Project Setup
+### Como Instalar e Configurar
 
-```sh
-npm install
-```
+Siga os passos abaixo para configurar e rodar o projeto localmente:
 
-### Compile and Hot-Reload for Development
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/mluizaguedes/topicos-vue
+    ```
 
-```sh
+2.  **Navegue até o diretório do projeto:**
+    ```bash
+    cd topicos-vue
+    ```
+
+3.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+4.  **Configuração da API:**
+    Este frontend espera uma [API de backend](https://github.com/mluizaguedes/topicos-springboot) rodando em `http://localhost:8080/`. Certifique-se de que a API esteja disponível neste endereço, ou ajuste a `baseURL` em `src/main.ts` se necessário.
+
+### Como Executar
+
+Para iniciar a aplicação em modo de desenvolvimento:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+Para compilar e minificar para produção:
 
-```sh
+```bash
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
